@@ -1,6 +1,6 @@
 package se.claremont.eyeautomatesupport;
 
-import se.claremont.taf.core.guidriverpluginstructure.GuiElement;
+import se.claremont.taf.genericguiinteraction.guidriverpluginstructure.GuiElement;
 
 /**
  * A screen captured image of the element to interact with

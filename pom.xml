@@ -34,10 +34,10 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:git://github.com/claremontqualitymanagement/TestAutomationFramework.git</connection>
-        <developerConnection>scm:git://github.com/claremontqualitymanagement/TestAutomationFramework.git</developerConnection>
-        <url>https://github.com/claremontqualitymanagement/TestAutomationFramework</url>
-        <tag>taf.eyesupport-4.0.1</tag>
+        <connection>scm:git:git://github.com/claremontqualitymanagement/TAF.EyeSupport.git</connection>
+        <developerConnection>scm:git://github.com/claremontqualitymanagement/TAF.EyeSupport.git</developerConnection>
+        <url>https://github.com/claremontqualitymanagement/TAF.EyeSupport</url>
+        <tag>taf.eyesupport</tag>
     </scm>
 
     <dependencies>
@@ -50,14 +50,14 @@
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.github.claremontqualitymanagement.TestAutomationFramework/Core -->
         <dependency>
-            <groupId>com.github.claremontqualitymanagement.TestAutomationFramework</groupId>
-            <artifactId>Core</artifactId>
-            <version>3.0.11</version>
+            <groupId>com.github.claremontqualitymanagement</groupId>
+            <artifactId>taf.core</artifactId>
+            <version>4.2.1</version>
         </dependency>
         <dependency>
             <groupId>com.github.claremontqualitymanagement</groupId>
-            <artifactId>taf.javasupport</artifactId>
-            <version>4.0.2</version>
+            <artifactId>taf.genericguiinteraction</artifactId>
+            <version>4.1.0</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -124,20 +124,6 @@
                 </executions>
             </plugin>
 
-            <!-- Sign the file to disable modifications -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <!-- Prepare for upload to Maven Central by pointing out nexus server -->
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
@@ -206,4 +192,37 @@
 
         </plugins>
     </build>
+
+    <profiles>
+        <!-- GPG Signature on release -->
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Sign the file to disable modifications upon release -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>

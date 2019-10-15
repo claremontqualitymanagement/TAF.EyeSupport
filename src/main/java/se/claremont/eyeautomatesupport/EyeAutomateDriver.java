@@ -2,14 +2,14 @@ package se.claremont.eyeautomatesupport;
 
 import eyeautomate.ScriptRunner;
 import org.junit.Assume;
-import se.claremont.taf.core.guidriverpluginstructure.GuiElement;
 import se.claremont.taf.core.logging.LogFolder;
 import se.claremont.taf.core.logging.LogLevel;
 import se.claremont.taf.core.logging.LogPost;
 import se.claremont.taf.core.reporting.HtmlStyles;
 import se.claremont.taf.core.testcase.TestCase;
 import se.claremont.taf.core.testrun.TestRun;
-import se.claremont.taf.javasupport.interaction.GenericInteractionMethods;
+import se.claremont.taf.genericguiinteraction.ScreenshotManager;
+import se.claremont.taf.genericguiinteraction.guidriverpluginstructure.GuiElement;
 
 import java.io.File;
 import java.io.IOException;
@@ -333,7 +333,7 @@ public class EyeAutomateDriver {
 
     public void saveDesktopScreenshot() {
         try {
-            GenericInteractionMethods e = new GenericInteractionMethods(this.testCase);
+            ScreenshotManager e = new ScreenshotManager(this.testCase);
             e.takeScreenshot();
         } catch (Exception e) {
             this.testCase.log(LogLevel.DEBUG, "Could not take desktop screenshot: " + e.toString());
